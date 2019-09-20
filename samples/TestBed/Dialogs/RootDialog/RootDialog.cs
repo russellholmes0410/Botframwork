@@ -4,12 +4,12 @@ using Microsoft.Bot.Builder.Dialogs.Adaptive;
 using Microsoft.Bot.Builder.Dialogs.Adaptive.Recognizers;
 using Microsoft.Bot.Builder.Dialogs.Adaptive.Actions;
 using Microsoft.Bot.Builder.Dialogs.Adaptive.Input;
-using Microsoft.Bot.Builder.Dialogs.Adaptive.TriggerHandlers;
 using Microsoft.Bot.Builder.LanguageGeneration.Templates;
 using Microsoft.Bot.Builder.LanguageGeneration.Generators;
 using Microsoft.Bot.Builder.LanguageGeneration;
 using System.IO;
-    
+using Microsoft.Bot.Builder.Dialogs.Adaptive.Conditions;
+
 namespace Microsoft.BotBuilderSamples
 {
     public class RootDialog : ComponentDialog
@@ -35,11 +35,11 @@ namespace Microsoft.BotBuilderSamples
                     }
                 },
                 //AutoEndDialog = false,
-                Triggers = new List<TriggerHandler>()
+                Triggers = new List<OnCondition>()
                 {
                     new OnConversationUpdateActivity()
                     {
-                        Constraint = "toLower(turn.Activity.membersAdded[0].name) != 'bot'",
+                        Condition = "toLower(turn.Activity.membersAdded[0].name) != 'bot'",
                         Actions = WelcomeUserAction()
                     },
                     new OnIntent() {
@@ -58,7 +58,7 @@ namespace Microsoft.BotBuilderSamples
 
             var childDialog = new AdaptiveDialog("childDialog")
             {
-                Triggers = new List<TriggerHandler>()
+                Triggers = new List<OnCondition>()
                 {
                     new OnBeginDialog()
                     {

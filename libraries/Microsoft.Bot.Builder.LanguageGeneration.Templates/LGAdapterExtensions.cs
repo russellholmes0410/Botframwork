@@ -41,7 +41,7 @@ namespace Microsoft.Bot.Builder.LanguageGeneration
             {
                 botAdapter.UseLanguageGeneration(resourceExplorer, new ResourceMultiLanguageGenerator(defaultLg));
             }
-            catch (ArgumentException err)
+            else
             {
                 botAdapter.UseLanguageGeneration(resourceExplorer, new TemplateEngineLanguageGenerator(string.Empty, defaultLg, LanguageGeneratorManager.ResourceResolver(resourceExplorer)));
             }

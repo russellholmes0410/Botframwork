@@ -2,7 +2,7 @@
     "$type": "Microsoft.AdaptiveDialog",
     "$schema": "../../../schemas/sdk.schema",
     "generator": "root.lg",
-    "events": [
+    "triggers": [
         {
             "$type": "Microsoft.OnBeginDialog",
             "actions": [
