@@ -2,17 +2,40 @@
     "$type": "Microsoft.AdaptiveDialog",
     "$schema": "../../../schemas/sdk.schema",
     "generator": "root.lg",
+    "recognizer": {
+        "$type": "Microsoft.RegexRecognizer",
+        "intents": [
+          {
+    
+              "$type": "Microsoft.IntentPattern",
+              "intent": "NoName",
+              "pattern": "(?i)no" 
+          }
+        ]
+    },
     "triggers": [
         {
             "$type": "Microsoft.OnBeginDialog",
             "actions": [
                 {
-                    "$type": "Microsoft.SendActivity",
-                    "activity": "Hello!"
+                    "$type": "Microsoft.TextInput",
+                    "property": "$name",
+                    "prompt": "What is your name?"
                 },
                 {
-                    "$type": "Microsoft.TraceActivity",
-                    "activity": "{settings}"
+                    "$type": "Microsoft.SendActivity",
+                    "activity": "I have {$name} as your name"
+                }
+            ]
+        },
+        {
+            "$type": "Microsoft.OnIntent",
+            "intent": "NoName",
+            "actions": [
+                {
+                    "$type": "Microsoft.SetProperty",
+                    "property": "$name",
+                    "value": "'Human'"
                 }
             ]
         }
