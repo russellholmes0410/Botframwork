@@ -1,2 +1,11 @@
-﻿# EchoReadBack
-- You said '{turn.activity.text}'
+﻿# AskForName.DefaultResponse
+- Sorry, this is not working. I'm going with {%defaultValue} for now.
+
+# AskForName.invalidPrompt
+- Sorry, {this.value} does not work. What is your name?
+
+# AskForName
+- What is your name?
+
+# NameReadBack
+- I have {$name} as your name

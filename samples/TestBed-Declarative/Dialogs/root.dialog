@@ -19,19 +19,19 @@
                 {
                     "$type": "Microsoft.TextInput",
                     "property": "$name",
-                    "prompt": "What is your name?",
+                    "prompt": "[AskForName]",
                     "validations": [
                         "count(this.value) > 3",
                         "count(this.value) < 500"
                     ],
-                    "invalidPrompt": "Sorry, {this.value} does not work. What is your name?",
+                    "invalidPrompt": "[AskForName.invalidPrompt]",
                     "defaultValue": "'Human'",
-                    "defaultValueResponse": "Sorry, this is not working. I'm going with {%defaultValue} for now.",
+                    "defaultValueResponse": "[AskForName.DefaultResponse]",
                     "maxTurnCount": 3
                 },
                 {
                     "$type": "Microsoft.SendActivity",
-                    "activity": "I have {$name} as your name"
+                    "activity": "[NameReadBack]"
                 }
             ]
         },
