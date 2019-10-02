@@ -40,7 +40,7 @@ var rootDialog = new AdaptiveDialog(nameof(AdaptiveDialog))
                         "length(this.value) <= 300"
                     },
                     InvalidPrompt = new ActivityTemplate("Sorry, '{this.value}' does not work. Give me something between 2-300 character in length. What is your name?"),
-                    DefaultValueResponse = new ActivityTemplate("Sorry, I'm not getting it. For now, let's set your name to '{this.options.DefaultValue}'.")
+                    DefaultValueResponse = new ActivityTemplate("Sorry, I'm not getting it. For now, let's set your name to '{%DefaultValue}'.")
                 }
             }
         }
