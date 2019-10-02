@@ -1,12 +1,11 @@
 {
     "$type": "Microsoft.AdaptiveDialog",
-    "$schema": "../../../schemas/sdk.schema",
+    "$schema": "../../../Schemas/sdk.schema",
     "generator": "root.lg",
     "recognizer": {
         "$type": "Microsoft.RegexRecognizer",
         "intents": [
           {
-    
               "$type": "Microsoft.IntentPattern",
               "intent": "NoName",
               "pattern": "(?i)no" 
@@ -20,7 +19,15 @@
                 {
                     "$type": "Microsoft.TextInput",
                     "property": "$name",
-                    "prompt": "What is your name?"
+                    "prompt": "What is your name?",
+                    "validations": [
+                        "count(this.value) > 3",
+                        "count(this.value) < 500"
+                    ],
+                    "invalidPrompt": "Sorry, {this.value} does not work. What is your name?",
+                    "defaultValue": "'Human'",
+                    "defaultValueResponse": "Sorry, this is not working. I'm going with {%defaultValue} for now.",
+                    "maxTurnCount": 3
                 },
                 {
                     "$type": "Microsoft.SendActivity",
