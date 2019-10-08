@@ -19,7 +19,7 @@ namespace Microsoft.BotBuilderSamples
         {
             var lgFile = Path.Combine(".", "Dialogs", "RootDialog", "RootDialog.lg");
 
-            // Create instance of adaptive dialog. 
+// Create instance of adaptive dialog. 
 var rootDialog = new AdaptiveDialog(nameof(AdaptiveDialog))
 {
     Generator = new TemplateEngineLanguageGenerator(),
@@ -28,20 +28,11 @@ var rootDialog = new AdaptiveDialog(nameof(AdaptiveDialog))
     {
         new OnBeginDialog() {
             Actions = new List<Dialog>() {
-                new TextInput() {
-                    Prompt = new ActivityTemplate("What is your name?"),
-                    Property = "user.name",
-                    AllowInterruptions = AllowInterruptions.Always,
-                    MaxTurnCount = 3,
-                    DefaultValue = "'Human'",
-                    Validations = new List<string>()
-                    {
-                        "length(this.value) > 2",
-                        "length(this.value) <= 300"
-                    },
-                    InvalidPrompt = new ActivityTemplate("Sorry, '{this.value}' does not work. Give me something between 2-300 character in length. What is your name?"),
-                    DefaultValueResponse = new ActivityTemplate("Sorry, I'm not getting it. For now, let's set your name to '{%DefaultValue}'.")
-                }
+                new ConfirmInput() {
+                    Property = "turn.xxx",
+                    Prompt = new ActivityTemplate("What?")
+                },
+                new SendActivity("I have {turn.xxx}")
             }
         }
     }
