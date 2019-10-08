@@ -7,15 +7,35 @@
             "$type": "Microsoft.OnBeginDialog",
             "actions": [
                 {
-                    "$type": "Microsoft.ChoiceInput",
-                    "property": "$color",
-                    "choices":[
+                    "$type": "Microsoft.SetProperty",
+                    "property": "$colorsList",
+                    "value": "createArray('red', 'blue', 'green')"
+                },
+                {
+                    "$type": "Microsoft.Foreach",
+                    "itemsProperty": "$colorsList",
+                    "actions": [
                         {
-                            "value": "red",
-                            "action": {}
+                            "$type": "Microsoft.SendActivity",
+                            "activity": "Prompting for '{$foreach.value}'"
+                        },
+                        {
+                            "$type": "Microsoft.TextInput",
+                            "property": "$userColorAnswer",
+                            "prompt": "What is color '{$foreach.value}'?",
+                            "alwaysPrompt": true
+                        },
+                        {
+                            "$type": "Microsoft.EditArray",
+                            "changeType": "Push",
+                            "itemsProperty": "$userAnswers",
+                            "resultProperty": "$userColorAnswer"
                         }
-                    ],
-                    "prompt": "what color?"
+                    ]
+                },
+                {
+                    "$type": "Microsoft.SendActivity",
+                    "activity": "Your answers are {join($userAnswers, ', ')}"
                 }
             ]
         }
